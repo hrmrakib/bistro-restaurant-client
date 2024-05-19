@@ -5,7 +5,7 @@ import img3 from "/assets/menu/pizza-bg.jpg";
 import img4 from "/assets/menu/salad-bg.jpg";
 import img5 from "/assets/menu/soup-bg.jpg";
 
-const OurMenu = () => {
+const OurMenuHome = () => {
   return (
     <div className='my-24'>
       <SectionTitle
@@ -89,4 +89,4 @@ const OurMenu = () => {
   );
 };
 
-export default OurMenu;
+export default OurMenuHome;

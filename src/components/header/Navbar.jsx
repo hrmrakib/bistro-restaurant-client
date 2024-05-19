@@ -34,10 +34,10 @@ const Navbar = () => {
         <NavLink to='/dashboard'>Dashboard</NavLink>
       </li>
       <li>
-        <NavLink to='/ourMenu'>Our Menu</NavLink>
+        <NavLink to='/menu'>Our Menu</NavLink>
       </li>
       <li>
-        <NavLink to='/ourShop'>Our Shop</NavLink>
+        <NavLink to='/shop'>Our Shop</NavLink>
       </li>
     </>
   );
