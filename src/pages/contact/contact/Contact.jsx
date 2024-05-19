@@ -3,6 +3,7 @@ import SectionTitle from "../../shared/SectionTitle";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { IoLocation } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa";
+import { FaRobot } from "react-icons/fa6";
 
 const Contact = () => {
   return (
@@ -108,7 +109,7 @@ const Contact = () => {
                 className='checkbox'
               />
               <span>I am not roboot</span>
-              <img src='' alt='' />
+              <FaRobot className='text-xl' />
             </div>
 
             <div className='text-center mt-5'>
