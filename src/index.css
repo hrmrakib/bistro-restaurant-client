@@ -7,3 +7,8 @@
   padding-bottom: -20px;
   text-shadow: 2px 4px 36px rgba(0, 0, 0, 1);
 }
+.menu li a.active {
+  background-color: white;
+  color: black;
+  font-weight: 600;
+}

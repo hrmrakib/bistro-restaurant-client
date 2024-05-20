@@ -24,6 +24,7 @@ const Login = () => {
             />
           </label>
         </div>
+
         <div>
           <label className='relative flex flex-col'>
             <span className='mb-2 text-black text-xl'>

@@ -4,10 +4,14 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { IoLocation } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   return (
     <div>
+      <Helmet>
+        <title>Bitro Boss | Contact</title>
+      </Helmet>
       <MenuBanner
         url={"/assets/menu/banner3.jpg"}
         heading={"OUR MENU"}

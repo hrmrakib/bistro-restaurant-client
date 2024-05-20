@@ -7,10 +7,14 @@ import CallUs from "../CallUs";
 import ChefRecommand from "../ChefRecommand";
 import FromOurMenu from "../FromOurMenu";
 import Testimonial from "../Testimonial";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Bitro Boss | Home</title>
+      </Helmet>
       <HeroBanner />
       <div className='w-[90%] mx-auto'>
         <OrderOnline />

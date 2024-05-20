@@ -14,7 +14,7 @@ const FromOurMenu = () => {
             </h2>
           </div>
 
-          <div className='grid lg:grid-cols-2 gap-8 border-2'>
+          <div className='w-2/4 mx-auto grid lg:grid-cols-2 items-center justify-center gap-8'>
             <div>
               <img className='w-80' src={img} alt='' />
             </div>
