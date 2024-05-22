@@ -1,4 +1,6 @@
-const MenuItem = ({ category }) => {
+import { Link } from "react-router-dom";
+
+const MenuItem = ({ category, title }) => {
   return (
     <div>
       <div className='my-24 w-[90%] mx-auto'>
@@ -23,9 +25,11 @@ const MenuItem = ({ category }) => {
         </div>
 
         <div className='mt-16 text-center'>
-          <button className='px-6 py-2 border-b-2 rounded-xl border-b-gray-700'>
-            Order Your Favourite Food
-          </button>
+          <Link to={`/shop/${title}`}>
+            <button className='px-6 py-2 border-b-2 rounded-xl border-b-gray-700'>
+              Order Your Favourite Food
+            </button>
+          </Link>
         </div>
       </div>
     </div>

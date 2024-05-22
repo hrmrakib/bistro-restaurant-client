@@ -2,44 +2,30 @@ import React, { useEffect, useRef, useState } from "react";
 import img from "/assets/login.jpg";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
-  validateCaptcha,
-} from "react-simple-captcha";
 
-const Login = () => {
+const Register = () => {
   const [eye, setEye] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const captureRef = useRef(null);
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-  };
-
-  const handleChangeCapture = (e) => {
-    const capValue = e.target.value;
-
-    if (validateCaptcha(capValue)) {
-      setDisabled(false);
-    }
-  };
 
   return (
     <div className='grid lg:grid-cols-2 gap-10 h-screen w-[96%] mx-auto'>
       <div className='flex flex-col items-center justify-center'>
-        <h2 className='text-4xl text-purple-500 font-bold'>Login Now!</h2>
+        <h2 className='text-4xl text-purple-500 font-bold'>Register Now!</h2>
         <img className='h-[500px]' src={img} alt='' />
       </div>
-      <form
-        onSubmit={handleLogin}
-        className='bg-gray-200 pt-4 px-8 my-3 rounded-lg'
-      >
+      <form onSubmit={""} className='bg-gray-200 pt-4 px-8 my-3 rounded-lg'>
+        <div className='mb-3'>
+          <label className='flex flex-col'>
+            <span className='mb-2 text-black text-xl'>
+              Name <sup className='text-red-500 text-lg'>*</sup>
+            </span>
+            <input
+              className='outline-none px-4 py-3 rounded'
+              type='text'
+              placeholder='Enter your name'
+            />
+          </label>
+        </div>
         <div className='mb-3'>
           <label className='flex flex-col'>
             <span className='mb-2 text-black text-xl'>
@@ -53,7 +39,7 @@ const Login = () => {
           </label>
         </div>
 
-        <div>
+        <div className='mb-3'>
           <label className='relative flex flex-col'>
             <span className='mb-2 text-black text-xl'>
               Password <sup className='text-red-500 text-lg'>*</sup>
@@ -72,21 +58,15 @@ const Login = () => {
           </label>
         </div>
 
-        <div className='my-4'>
-          <LoadCanvasTemplate />
-        </div>
-
-        <div className='my-7'>
-          <span className='text-black text-xl'>
-            Type Here - Capture <sup className='text-red-500 text-lg'>*</sup>
-          </span>
-          <label className='flex flex-col mt-2'>
+        <div className='mb-3'>
+          <label className='flex flex-col'>
+            <span className='mb-2 text-black text-xl'>
+              Photo URL <sup className='text-red-500 text-lg'>*</sup>
+            </span>
             <input
-              onBlur={handleChangeCapture}
-              // ref={captureRef}
-              className='outline-none px-4 py-3 rounded text-lg font-semibold'
-              type='text'
-              placeholder='Type Capture'
+              className='outline-none px-4 py-3 rounded'
+              type='email'
+              placeholder='Enter your photoURL'
             />
           </label>
         </div>
@@ -101,9 +81,9 @@ const Login = () => {
         </div>
 
         <p className='text-blue-500 font-bold text-xl text-center my-3'>
-          New Here?{" "}
-          <Link to='/register' className='underline'>
-            Create a new account
+          Already have an account!{" "}
+          <Link to='/login' className='underline'>
+            Please Login
           </Link>
         </p>
 
@@ -122,4 +102,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

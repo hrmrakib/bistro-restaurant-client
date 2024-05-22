@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaCartPlus } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [show, setShow] = useState(true);
@@ -37,7 +37,7 @@ const Navbar = () => {
         <NavLink to='/menu'>Our Menu</NavLink>
       </li>
       <li>
-        <NavLink to='/shop'>Our Shop</NavLink>
+        <NavLink to='/shop/salad'>Our Shop</NavLink>
       </li>
     </>
   );
@@ -89,7 +89,10 @@ const Navbar = () => {
                 00
               </span>
             </p>
-            <button>SignOut</button>
+            {/* <button>SignOut</button> */}
+            <Link to='/login'>
+              <button>Login</button>
+            </Link>
           </div>
         </div>
       </div>

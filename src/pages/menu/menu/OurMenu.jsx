@@ -35,7 +35,25 @@ const OurMenu = () => {
           heading={"Today's Offer"}
           subHeading={"--- Don't miss! ---"}
         />
-        <MenuItem category={popular} />
+        <div className='w-[90%] mx-auto grid md:grid-cols-2 gap-10 mb-20'>
+          {popular?.map((item) => (
+            <div
+              key={item._id}
+              className='flex items-center justify-between gap-5'
+            >
+              <img
+                className='size-16 rounded-r-full rounded-b-full'
+                src={item?.image}
+                alt=''
+              />
+              <div>
+                <h2 className='text-2xl font-semibold'>{item?.name}</h2>
+                <p>{item?.recipe}</p>
+              </div>
+              <p className='text-lg text-orange-500 font-bold'>$100</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* repeated content */}
@@ -48,7 +66,8 @@ const OurMenu = () => {
             "The interior of The Azure Bistro is a perfect blend of modern elegance and cozy comfort."
           }
         />
-        <MenuItem category={salad} />
+
+        <MenuItem category={salad} title={"salad"} />
       </div>
 
       <div>
@@ -59,7 +78,7 @@ const OurMenu = () => {
             "The interior of The Azure Bistro is a perfect blend of modern elegance and cozy comfort."
           }
         />
-        <MenuItem category={pizza} />
+        <MenuItem category={pizza} title={"pizza"} />
       </div>
 
       <div>
@@ -70,7 +89,7 @@ const OurMenu = () => {
             "The interior of The Azure Bistro is a perfect blend of modern elegance and cozy comfort."
           }
         />
-        <MenuItem category={dessert} />
+        <MenuItem category={dessert} title={"dessert"} />
       </div>
       <div>
         <Cover
@@ -80,7 +99,7 @@ const OurMenu = () => {
             "The interior of The Azure Bistro is a perfect blend of modern elegance and cozy comfort."
           }
         />
-        <MenuItem category={soup} />
+        <MenuItem category={soup} title={"soup"} />
       </div>
     </div>
   );

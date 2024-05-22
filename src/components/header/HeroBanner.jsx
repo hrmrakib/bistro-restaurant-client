@@ -9,7 +9,7 @@ import img6 from "/assets/home/06.png";
 
 const HeroBanner = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center'>
       <Carousel>
         <div>
           <img src={img1} />
