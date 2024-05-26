@@ -4,6 +4,7 @@ import { baseURL } from "../utils/url";
 const useMenu = () => {
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch(`${baseURL}/menu`)
       .then((res) => res.json())
@@ -13,7 +14,7 @@ const useMenu = () => {
       });
   }, []);
 
-  return [menu];
+  return [menu, loading];
 };
 
 export default useMenu;

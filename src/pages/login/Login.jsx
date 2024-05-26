@@ -1,26 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
 import img from "/assets/login.jpg";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
+import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const [eye, setEye] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const captureRef = useRef(null);
+  const { login } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const { email, password } = data;
+
+    login(email, password).then(() => {
+      console.log("login succed");
+
+      navigate(from);
+    });
+  };
 
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-  };
 
   const handleChangeCapture = (e) => {
     const capValue = e.target.value;
@@ -37,7 +54,7 @@ const Login = () => {
         <img className='h-[500px]' src={img} alt='' />
       </div>
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit(onSubmit)}
         className='bg-gray-200 pt-4 px-8 my-3 rounded-lg'
       >
         <div className='mb-3'>
@@ -48,9 +65,11 @@ const Login = () => {
             <input
               className='outline-none px-4 py-3 rounded'
               type='email'
+              {...register("email", { required: true })}
               placeholder='Enter your email'
             />
           </label>
+          {errors.email && <span>Email is required</span>}
         </div>
 
         <div>
@@ -61,6 +80,7 @@ const Login = () => {
             <input
               className='outline-none px-4 py-3 rounded'
               type={eye ? "text" : "password"}
+              {...register("password", { required: true })}
               placeholder='Enter your email'
             />
             <span
@@ -70,6 +90,7 @@ const Login = () => {
               {eye ? <FaEye /> : <FaEyeSlash />}
             </span>
           </label>
+          {errors.password && <span>Password is required</span>}
         </div>
 
         <div className='my-4'>
@@ -83,7 +104,6 @@ const Login = () => {
           <label className='flex flex-col mt-2'>
             <input
               onBlur={handleChangeCapture}
-              // ref={captureRef}
               className='outline-none px-4 py-3 rounded text-lg font-semibold'
               type='text'
               placeholder='Type Capture'
