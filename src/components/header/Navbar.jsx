@@ -10,8 +10,6 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [cart] = useCart();
 
-  console.log(cart.length);
-
   const controlNavbar = () => {
     if (window.scrollY > lastScrollY) {
       setShow(false);
@@ -94,12 +92,14 @@ const Navbar = () => {
             </ul>
           </div>
           <div className='flex items-center gap-5'>
-            <p className='relative'>
-              <FaCartPlus className='text-xl' />
-              <span className='absolute right-0 -mt-2 size-6 text-base flex items-center justify-center rounded-full bg-red-500 text-white'>
-                {cart.length || "00"}
-              </span>
-            </p>
+            <Link to='/dashboard/cart'>
+              <p className='relative cursor-pointer'>
+                <FaCartPlus className='text-xl' />
+                <span className='absolute right-0 -mt-2 size-6 text-base flex items-center justify-center rounded-full bg-red-500 text-white'>
+                  {cart.length || "00"}
+                </span>
+              </p>
+            </Link>
             {/* <button>SignOut</button> */}
             {/* <Link to='/login'>
               <button>Login</button>

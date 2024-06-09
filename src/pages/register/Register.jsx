@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "./../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin";
 
 const Register = () => {
   const [eye, setEye] = useState(false);
@@ -14,10 +16,12 @@ const Register = () => {
   const { createUser, setUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -55,15 +59,28 @@ const Register = () => {
             photoURL: photoURL,
             email: email,
           });
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: "Registration successfully!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
 
-          navigate(location?.state ? location?.state : "/", { replace: true });
+          const userInfo = {
+            name: name,
+            email: email,
+          };
+
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "Registration successfully!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
+              navigate(location?.state ? location?.state : "/", {
+                replace: true,
+              });
+            }
+          });
         })
         .catch((err) => {
           console.log(err.message);
@@ -188,14 +205,7 @@ const Register = () => {
 
         <p className='text-center mb-3'>or Sign In with</p>
 
-        <div className='flex items-center justify-center gap-6'>
-          <span className='border border-black p-4 rounded-full'>
-            <FaGoogle className='text-2xl' />
-          </span>
-          <span className='border border-black p-4 rounded-full'>
-            <FaGithub className='text-2xl' />
-          </span>
-        </div>
+        <SocialLogin />
       </form>
     </div>
   );

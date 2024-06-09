@@ -9,6 +9,7 @@ import {
 } from "react-simple-captcha";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
   const [eye, setEye] = useState(false);
@@ -129,14 +130,7 @@ const Login = () => {
 
         <p className='text-center mb-3'>or Sign In with</p>
 
-        <div className='flex items-center justify-center gap-6'>
-          <span className='border border-black p-4 rounded-full'>
-            <FaGoogle className='text-2xl' />
-          </span>
-          <span className='border border-black p-4 rounded-full'>
-            <FaGithub className='text-2xl' />
-          </span>
-        </div>
+        <SocialLogin />
       </form>
     </div>
   );
